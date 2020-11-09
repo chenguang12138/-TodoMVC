@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <header>
+      <h2>ToDoMVC</h2>
+      <input type="text" id="new-todo" class="box" v-model="newTodo" @keyup.enter="addList"
+        placeholder="What needs to be done?" v-focus>
+    </header>
+    <section>
+      <div id="todo">
+        <ul>
+          <li class="box list" v-for="item in arrFilter" :key="item.id" :class="{check: item.completed}">
+            <input type="checkbox" v-model="item.completed">
+            {{ item.val }}
+            <button @click="del(item)">x</button>
+          </li>
+        </ul>
+        <div class="box card" v-show="arrList.length">
+          <span> {{ count }} items left</span>
+          <input type="radio" name="btn" id="all" value="all" v-model="itemFilter">
+          <input type="radio" name="btn" id="active" value="active" v-model="itemFilter">
+          <input type="radio" name="btn" id="completed" value="completed" v-model="itemFilter">
+          <label for="all">all</label>
+          <label for="active">active</label>
+          <label for="completed">completed</label>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div>
+        by chenguang123
+      </div>
+    </footer>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+
+    Vue.directive('focus', {
+      inserted (e) {
+        e.focus()
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        newTodo: '',
+        arrList: [],
+        idNum: 0,
+        itemFilter: 'all',
+      },
+      methods: {
+        addList () {
+          if (this.newTodo) {
+            this.arrList.push({ id: this.idNum++, val: this.newTodo, completed: false })
+            this.newTodo = ''
+          }
+        },
+        del (item) {
+          var i = this.arrList.indexOf(item)
+          this.arrList.splice(i, 1)
+        }
+      },
+      computed: {
+        arrFilter () {
+          if (this.itemFilter === 'all') {
+            return this.arrList
+          }
+          if (this.itemFilter === 'active') {
+            return this.arrList.filter(item => !item.completed)
+          }
+          if (this.itemFilter === 'completed') {
+            return this.arrList.filter(item => item.completed)
+          }
+        },
+        count () {
+          return this.arrList.filter(item => !item.completed).length
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

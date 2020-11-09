@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+#app {
+  width: 900px;
+  min-height: 100%;
+  background-color: rgb(237, 237, 237);
+  margin: auto;
+  overflow: hidden;
+}
+
+header h2 {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 32px;
+  color: gray;
+}
+
+#new-todo {
+  border: none;
+  outline: none;
+}
+
+.box {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 500px;
+  height: 50px;
+  padding: 10px 20px;
+  box-shadow: .5px .5px 3px rgb(132, 132, 132);
+  font-size: 24px;
+  margin: auto;
+}
+
+.box input {
+  width: 15px;
+  height: 15px;
+  margin: 0 10px;
+}
+
+.list button {
+  position: absolute;
+  right: 20px;
+  visibility: hidden;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  color: rgb(161, 161, 161);
+  transition: color .5s linear;
+}
+
+.list:hover button {
+  visibility: visible;
+}
+
+.list button:hover {
+  color: gray;
+}
+
+.card {
+  font-size: 16px;
+}
+
+.card span {
+  margin-right: 30px;
+}
+
+.card input {
+  display: none;
+}
+
+.card label {
+  border: 1px solid transparent;
+  margin: 5px;
+  cursor: pointer;
+  transition: border .3s linear;
+}
+
+.card label:hover {
+  border: 1px solid black;
+}
+
+.card input:nth-of-type(1):checked ~ label:nth-of-type(1) {
+  border: 1px solid black;
+}
+.card input:nth-of-type(2):checked ~ label:nth-of-type(2) {
+  border: 1px solid black;
+}
+.card input:nth-of-type(3):checked ~ label:nth-of-type(3) {
+  border: 1px solid black;
+}
+
+footer {
+  margin: 30px;
+  text-align: center;
+  color: gray;
+}
+
+.check {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.d1 {
+  display: none;
+}
+.d2 {
+  display: none;
+}
+
+.hideCard {
+  visibility: hidden;
+}
+
+.showCard {
+  visibility: visible;
+}
